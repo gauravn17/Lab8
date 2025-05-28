@@ -6,35 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lab 8 - Network & ServiceWorkers</title>
 
-  <!-- Turkey Emoji Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦃</text></svg>" />
+  <!-- 🦃 Turkey Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦃</text></svg>">
 
-  <!-- Manifest -->
+  <!-- ✅ Manifest for PWA -->
   <link rel="manifest" href="manifest.json" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="assets/styles/main.css" />
 
   <!-- Recipe Card Custom Element -->
-  <script type="module" src="assets/scripts/RecipeCard.js"></script>
+  <script src="assets/scripts/RecipeCard.js" type="module"></script>
+
+  <!-- Main Script (with fetch + service worker registration) -->
+  <script src="assets/scripts/main.js" type="module"></script>
 </head>
 <body>
-  <main class="recipe-list">
-    <!-- Recipe cards injected dynamically via JS -->
+  <main>
+    <!-- Recipes will be inserted here dynamically -->
   </main>
-
-  <!-- Script for loading and caching recipes -->
-  <script src="main.js"></script>
-
-  <!-- Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-          .then(reg => console.log('Service Worker registered with scope:', reg.scope))
-          .catch(err => console.error('Service Worker registration failed:', err));
-      });
-    }
-  </script>
 </body>
 </html>
