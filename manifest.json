@@ -63,9 +63,9 @@
       "type": "image/svg"
     },
     {
-      "src": "/assets/images/icons/5-star.svg",
+      "src": "/assets/images/icons/arrow-down.png",
       "sizes": "300x1707",
-      "type": "image/svg"
+      "type": "image/png"
     },
   ]
 }
