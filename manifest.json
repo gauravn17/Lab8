@@ -1,6 +1,6 @@
 {
-  "name": "Thanksgiving Recipe Cards",
-  "short_name": "Recipes",
+  "name": "Lab8",
+  "short_name": "Gaurav Nair",
   "description": "A fun offline-enabled PWA to explore Thanksgiving recipes!",
   "start_url": ".",
   "display": "standalone",
