@@ -1,4 +1,4 @@
-# Lab8-Starter
+# Lab8
 
 https://gauravn17.github.io/Lab8/
 
