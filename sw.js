@@ -12,8 +12,9 @@ const RECIPE_URLS = [
   'https://adarsh249.github.io/Lab8-Starter/recipes/6_one-pot-thanksgiving-dinner.json'
 ];
 
-// Install event: Cache initial URLs
+// Install event: Cache initial URLs and activate immediately
 self.addEventListener('install', function (event) {
+  self.skipWaiting(); // Activate worker immediately after install
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       return cache.addAll(RECIPE_URLS);
@@ -21,12 +22,12 @@ self.addEventListener('install', function (event) {
   );
 });
 
-// Activate event: Take control immediately
+// Activate event: Claim control of all clients immediately
 self.addEventListener('activate', function (event) {
   event.waitUntil(self.clients.claim());
 });
 
-// Fetch event: Serve from cache if available, otherwise fetch & cache
+// Fetch event: Serve from cache if available, otherwise fetch and cache
 self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.open(CACHE_NAME).then(function (cache) {
@@ -36,18 +37,18 @@ self.addEventListener('fetch', function (event) {
         }
 
         return fetch(event.request).then(function (networkResponse) {
-          // Only cache valid responses
-          if (
-            networkResponse &&
-            networkResponse.status === 200 &&
-            networkResponse.type === 'basic'
-          ) {
+          // Only cache valid responses (status 200)
+          if (networkResponse && networkResponse.status === 200) {
             cache.put(event.request, networkResponse.clone());
           }
           return networkResponse;
         }).catch(function (error) {
-          // Optional: return a fallback response here
           console.error('Fetch failed:', error);
+          return new Response('You are offline and this resource is not cached.', {
+            status: 503,
+            statusText: 'Service Unavailable',
+            headers: new Headers({ 'Content-Type': 'text/plain' })
+          });
         });
       });
     })
