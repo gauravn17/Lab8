@@ -4,37 +4,33 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lab 8 - Network & Service Workers</title>
+  <title>Lab 8 - Network & ServiceWorkers</title>
 
-  <!-- 🦃 Turkey Favicon as SVG -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦃</text></svg>" />
+  <!-- Turkey Emoji Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦃</text></svg>" />
 
-  <!--  Manifest for PWA -->
-  <link rel="manifest" href="./manifest.json" />
+  <!-- Manifest -->
+  <link rel="manifest" href="manifest.json" />
 
-  <!--  Main Stylesheet -->
-  <link rel="stylesheet" href="./style.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 
-  <!--  Recipe Card Custom Element (JS module) -->
-  <script type="module" src="./assets/scripts/RecipeCard.js"></script>
+  <!-- Recipe Card Custom Element -->
+  <script type="module" src="assets/scripts/RecipeCard.js"></script>
 </head>
 <body>
-  <main>
-    <h1>Thanksgiving Recipes</h1>
-    <!-- Your dynamic recipe cards will go here -->
+  <main class="recipe-list">
+    <!-- Recipe cards injected dynamically via JS -->
   </main>
 
-  <!--  Optional Logo Image -->
-  <img src="./assets/images/logo.png" alt="Logo" style="width:100px;"/>
+  <!-- Script for loading and caching recipes -->
+  <script src="main.js"></script>
 
-  <!--  Main JS (if any) -->
-  <script src="./main.js"></script>
-
-  <!--  Register the Service Worker -->
+  <!-- Service Worker Registration -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js')
+        navigator.serviceWorker.register('sw.js')
           .then(reg => console.log('Service Worker registered with scope:', reg.scope))
           .catch(err => console.error('Service Worker registration failed:', err));
       });
